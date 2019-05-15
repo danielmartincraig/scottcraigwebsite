@@ -33,8 +33,11 @@ def lambda_handler(event, context):
 
     #     raise e
 
+    with open("res/bio.html") as f:
+        body = f.read()
+
     return {
         "statusCode": 200,
         "headers": {"Content-Type": "text/html"},
-        "body": "Scott Craig"
+        "body": body
     }
