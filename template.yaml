@@ -11,29 +11,29 @@ Globals:
     Timeout: 3
 
 Resources:
-  BiographyFunction:
+  SiteFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      CodeUri: biography/
+      CodeUri: site/
       Handler: app.lambda_handler
       Runtime: python3.6
       Events:
-        Biography:
+        Site:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Path: /bio
+            Path: /
             Method: get
 
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  BiographyApi:
-    Description: "API Gateway endpoint URL for Prod stage for Biography function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/bio/"
-  BiographyFunction:
-    Description: "Biography Lambda Function ARN"
-    Value: !GetAtt BiographyFunction.Arn
-  BiographyFunctionIamRole:
-    Description: "Implicit IAM Role created for Biography function"
-    Value: !GetAtt BiographyFunctionRole.Arn
+  SiteApi:
+    Description: "API Gateway endpoint URL for Prod stage for the Site function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
+  SiteFunction:
+    Description: "Site Lambda Function ARN"
+    Value: !GetAtt SiteFunction.Arn
+  SiteFunctionIamRole:
+    Description: "Implicit IAM Role created for Site function"
+    Value: !GetAtt SiteFunctionRole.Arn
